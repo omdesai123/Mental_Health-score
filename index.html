@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MindPulse — Mental Health Insight</title>
+
+  <!-- Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (data/score) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient background orbs -->
+  <div class="bg-atmosphere" aria-hidden="true">
+    <div class="orb orb--one"></div>
+    <div class="orb orb--two"></div>
+    <div class="orb orb--three"></div>
+  </div>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav">
+    <div class="nav__brand">
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6" class="nav__mark-pulse"/>
+        </svg>
+      </span>
+      <span class="nav__title">MindPulse</span>
+    </div>
+    <p class="nav__tagline">Read your habits. Understand your headspace.</p>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark and light mode">
+      <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/>
+        <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <line x1="12" y1="1.8" x2="12" y2="4.2"/>
+          <line x1="12" y1="19.8" x2="12" y2="22.2"/>
+          <line x1="1.8" y1="12" x2="4.2" y2="12"/>
+          <line x1="19.8" y1="12" x2="22.2" y2="12"/>
+          <line x1="4.5" y1="4.5" x2="6.2" y2="6.2"/>
+          <line x1="17.8" y1="17.8" x2="19.5" y2="19.5"/>
+          <line x1="4.5" y1="19.5" x2="6.2" y2="17.8"/>
+          <line x1="17.8" y1="6.2" x2="19.5" y2="4.5"/>
+        </g>
+      </svg>
+      <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none">
+        <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.6 6.6 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <main class="page">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" data-animate>
+      <p class="hero__eyebrow">A quiet check-in, powered by your own data</p>
+      <h1 class="hero__title">How is your <span>scroll</span> shaping your <span>state of mind?</span></h1>
+      <p class="hero__body">
+        Tell us about your day &mdash; screen time, sleep, movement, stress &mdash; and the model
+        will estimate your mental wellbeing score in seconds. No judgement, just a signal.
+      </p>
+    </section>
+
+    <!-- ===================== FORM CARD ===================== -->
+    <section class="card glass" data-animate id="formCard">
+      <div class="card__head">
+        <h2>Your daily snapshot</h2>
+        <p>Every field helps the model see the fuller picture.</p>
+      </div>
+
+      <form id="predictForm" novalidate>
+
+        <div class="field-grid">
+
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="1" max="120" placeholder="e.g. 21" required />
+            <span class="field__error" id="err-age"></span>
+          </div>
+
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <span class="field__error" id="err-gender"></span>
+          </div>
+
+          <div class="field">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" placeholder="e.g. India" required />
+            <span class="field__error" id="err-country"></span>
+          </div>
+
+          <div class="field">
+            <label for="academic_level">Academic level</label>
+            <select id="academic_level" name="academic_level" required>
+              <option value="" disabled selected>Select</option>
+              <option value="High School">High School</option>
+              <option value="Undergraduate">Undergraduate</option>
+              <option value="Graduate">Graduate</option>
+            </select>
+            <span class="field__error" id="err-academic_level"></span>
+          </div>
+
+          <div class="field">
+            <label for="most_used_platform">Most used platform</label>
+            <select id="most_used_platform" name="most_used_platform" required>
+              <option value="" disabled selected>Select</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Instagram">Instagram</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Twitter">Twitter</option>
+              <option value="YouTube">YouTube</option>
+              <option value="TikTok">TikTok</option>
+              <option value="Snapchat">Snapchat</option>
+              <option value="LINE">LINE</option>
+              <option value="KakaoTalk">KakaoTalk</option>
+              <option value="VKontakte">VKontakte</option>
+              <option value="WeChat">WeChat</option>
+            </select>
+            <span class="field__error" id="err-most_used_platform"></span>
+          </div>
+
+          <div class="field">
+            <label for="purpose_of_use">Purpose of use</label>
+            <select id="purpose_of_use" name="purpose_of_use" required>
+              <option value="" disabled selected>Select</option>
+              <option value="Networking">Networking</option>
+              <option value="Education">Education</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="News">News</option>
+            </select>
+            <span class="field__error" id="err-purpose_of_use"></span>
+          </div>
+
+          <div class="field">
+            <label for="avg_daily_usage_hours">Avg. daily usage (hrs)</label>
+            <input type="number" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="24" step="0.1" placeholder="e.g. 5" required />
+            <span class="field__error" id="err-avg_daily_usage_hours"></span>
+          </div>
+
+          <div class="field">
+            <label for="daily_unlocks">Daily unlocks</label>
+            <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" max="500" placeholder="e.g. 45" required />
+            <span class="field__error" id="err-daily_unlocks"></span>
+          </div>
+
+          <div class="field">
+            <label for="study_hours">Study hours</label>
+            <input type="number" id="study_hours" name="study_hours" min="0" max="24" step="0.1" placeholder="e.g. 6" required />
+            <span class="field__error" id="err-study_hours"></span>
+          </div>
+
+          <div class="field">
+            <label for="physical_activity_hours">Physical activity (hrs)</label>
+            <input type="number" id="physical_activity_hours" name="physical_activity_hours" min="0" max="24" step="0.1" placeholder="e.g. 1" required />
+            <span class="field__error" id="err-physical_activity_hours"></span>
+          </div>
+
+          <div class="field">
+            <label for="sleep_hours_per_night">Sleep hours / night</label>
+            <input type="number" id="sleep_hours_per_night" name="sleep_hours_per_night" min="0" max="24" step="0.1" placeholder="e.g. 7" required />
+            <span class="field__error" id="err-sleep_hours_per_night"></span>
+          </div>
+
+          <div class="field">
+            <label for="stress_level">Stress level</label>
+            <select id="stress_level" name="stress_level" required>
+              <option value="" disabled selected>Select</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Very High">Very High</option>
+            </select>
+            <span class="field__error" id="err-stress_level"></span>
+          </div>
+
+        </div>
+
+        <div class="card__actions">
+          <button type="submit" class="btn btn--primary" id="predictBtn">
+            <span class="btn__label">Reveal my score</span>
+            <span class="btn__spinner" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn--ghost" id="resetBtn">Reset form</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===================== RESULT ===================== -->
+    <section class="card glass result" id="resultCard" hidden>
+      <div class="result__orb-wrap" aria-hidden="true">
+        <div class="result__orb" id="resultOrb">
+          <span class="result__orb-core"></span>
+        </div>
+      </div>
+      <p class="result__eyebrow">Your mental health score</p>
+      <p class="result__score" id="resultScore">0.00</p>
+      <p class="result__status" id="resultStatus">—</p>
+      <p class="result__message" id="resultMessage">
+        Fill in the form above to see your personalised reading.
+      </p>
+      <div class="result__scale" aria-hidden="true">
+        <span class="result__scale-seg" style="--seg-color: var(--c-coral)"></span>
+        <span class="result__scale-seg" style="--seg-color: var(--c-amber)"></span>
+        <span class="result__scale-seg" style="--seg-color: var(--c-teal)"></span>
+        <span class="result__scale-seg" style="--seg-color: var(--c-violet)"></span>
+      </div>
+      <div class="result__scale-labels" aria-hidden="true">
+        <span>Poor</span><span>Average</span><span>Good</span><span>Excellent</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>MindPulse is a screen-time reflection tool, not a clinical diagnosis. If you're struggling, please talk to someone you trust.</p>
+    <p class="footer__meta">Built with FastAPI + a trained wellbeing model.</p>
+  </footer>
+
+  <!-- Toast container -->
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
