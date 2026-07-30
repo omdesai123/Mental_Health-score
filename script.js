@@ -5,7 +5,7 @@
    ========================================================= */
 
 (() => {
-  const API_URL = 'http://127.0.0.1:8000/predict';
+  const API_URL = 'https://mental-health-score-1-c133.onrender.com';
 
   const form = document.getElementById('predictForm');
   const predictBtn = document.getElementById('predictBtn');
