@@ -5,7 +5,7 @@
    ========================================================= */
 
 (() => {
-  const API_URL = 'https://mental-health-score-1-c133.onrender.com';
+  const API_URL = "https://mental-health-score-1-c133.onrender.com/predict";
 
   const form = document.getElementById('predictForm');
   const predictBtn = document.getElementById('predictBtn');
@@ -187,11 +187,13 @@
     predictBtn.disabled = true;
 
     try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+     const response = await fetch(`${API_URL}/predict`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload),
+});
 
       if (!response.ok) {
         throw new Error(`Server responded with status ${response.status}`);
